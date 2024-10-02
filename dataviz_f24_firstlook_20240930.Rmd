@@ -7,8 +7,14 @@ output: html_notebook
 There are packages for loading data. Our data will either be an Excel file or a comma-separated values (.csv) file.
 
 ```{r}
-library(readxl)
-data <- read_xlsx("C:\Users\david.flynn\onlinegambling.xlsx", sheet="monthly") 
+urlfile="https://raw.githubusercontent.com/flynnecon/datavizf24/online_monthly_R.csv"
+```
+#Getting the data read into R and then made into our time series analysis format. Note we do not need a training or test data division with the fact we are looking at a forecast 1 period ahead.
+```{r  data work}
+data <- read_csv(url(urlfile))
+```
+```{r scatter}
+data |> ggplot(x=Month,y=Handle) + geom_point()
 ```
 
 
