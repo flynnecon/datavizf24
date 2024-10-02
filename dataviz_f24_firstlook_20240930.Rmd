@@ -1,0 +1,15 @@
+---
+title: "R First Look"
+output: html_notebook
+---
+
+##Loading the data
+There are packages for loading data. Our data will either be an Excel file or a comma-separated values (.csv) file.
+
+```{r}
+library(readxl)
+data <- read_xlsx("C:\Users\david.flynn\onlinegambling.xlsx", sheet="monthly") 
+```
+
+
+
