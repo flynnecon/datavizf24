@@ -26,7 +26,7 @@ data <- read_csv(url(urlfile))
 
 Now there is some data management needed. The program is not going to know how to read the date when it is imported as a text field.\footnote{Recall I showed this in class and it just did not look right.} The steps here are to first, drop the first column, then replace the column with a user generated sequence of dates matching what was already in the data, the create a readable data table using the date information. That is the last line wit the \em{mutate} and \em{as_tsibble} commands.
 
-```[r data management}
+```{r data management}
 data <- data[-c(1)]
 data$month <- seq(as.Date("2018-06-01"), as.Date("2024-07-01"), by="1 month")
 data_tsbl <- data |> mutate(date=yearmonth(month)) |> as_tsibble(index=date)
