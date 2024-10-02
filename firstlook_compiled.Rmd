@@ -1,0 +1,34 @@
+---
+title: "R First Look"
+output: html_notebook
+---
+
+##Loading the data
+Our data will either be an Excel file or a comma-separated values (.csv) file. These are very common and readable by many different programs. For most of the R work in this class we will make use of ".csv" files because they make it easier to call the data directly from online. There are packages for loading data into R that provide commands. Much of what we will use this semester is located in the \em{tidyverse}. This is a collection of the most popular collections of code and commands in R. It includes collections for reading data, data analysis, and data visualization.
+
+In addition, for now, to make sense of the date information we will make use of a package called \em{tsibble}. This is useful for time/date type visualizations.^[I gave an explanation of the origin of this term in class.]
+
+```{r}
+library(tidyverse)
+library(tsibble)
+urlfile="https://raw.githubusercontent.com/flynnecon/datavizf24/refs/heads/main/online_monthly_R.csv"
+```
+#Getting the data read into R and then made into our time series analysis format. Note we do not need a training or test data division with the fact we are looking at a forecast 1 period ahead.
+```{r  data work}
+data <- read_csv(url(urlfile))
+data <- data[-c(1)]
+data$month <- seq(as.Date("2018-06-01"), as.Date("2024-07-01"), by="1 month")
+data_tsbl <- data |> mutate(date=yearmonth(month)) |> as_tsibble(index=date)
+```
+
+```{r scatter}
+data_tsbl |> ggplot(aes(x=date,y=Handle)) + geom_point(color="darkgreen")
+```
+
+```{r another scatter}
+ggplot(data=data_tsbl,aes(x=date,y=Handle/1000000000)) + geom_line(color="blue")
+```
+
+```{r combination}
+ggplot(data=data_tsbl, aes(x=date,y=Handle)) + geom_point(color="darkgreen") + geom_line(color="blue") + theme_bw()
+```
