@@ -1,0 +1,42 @@
+---
+title: "Bow Wow Wow"
+output: html_notebook
+---
+
+# Creating a Lollipop Chart in R
+
+
+```{r load the libraries}
+library(tidyverse)
+library(tsibble)
+urlfile="https://raw.githubusercontent.com/flynnecon/datavizf24/refs/heads/main/Lollipop%20Chart/nba_championships.csv"
+```
+
+
+
+```{r read the data}
+candy <- read_csv(url(urlfile))
+```
+
+```{r the plot}
+ggplot(candy, aes(x=Team, y=number)) +
+  geom_segment( aes(x=Team, xend=Team, y=0, yend=number), color="grey4") +
+  geom_point( color="darkgreen", size=4) + theme_bw()
+```
+
+
+```{r second plot}
+ggplot(candy, aes(x=Team, y=number)) +
+  geom_segment( aes(x=Team, xend=Team, y=0, yend=number), color="grey4") +
+  geom_point( color="darkgreen", size=4) + coord_flip() + theme_bw()
+```
+
+```{r third plot}
+ggplot(candy, aes(x=Team, y=number)) +
+  geom_segment( aes(x=Team, xend=Team, y=0, yend=number), color="grey4") +
+  geom_point( color="darkgreen", size=4) + coord_flip() + theme_bw() + aes(x = fct_reorder(Team, number))
+
+```
+
+
+
