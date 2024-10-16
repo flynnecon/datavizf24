@@ -1,1 +1,20 @@
-#Making R file
+---
+title: "Slope Chart"
+output: html_notebook
+---
+
+# Creating a Lollipop Chart in R
+
+
+```{r load the libraries}
+library(tidyverse)
+library(tsibble)
+urlfile="https://raw.githubusercontent.com/flynnecon/datavizf24/refs/heads/main/Lollipop%20Chart/nba_championships.csv"
+```
+
+
+
+```{r read the data}
+candy <- read_csv(url(urlfile))
+```
+
