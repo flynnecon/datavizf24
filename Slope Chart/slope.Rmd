@@ -3,18 +3,19 @@ title: "Slope Chart"
 output: html_notebook
 ---
 
-# Creating a Lollipop Chart in R
+# Creating a Slope Chart in R
 
 
 ```{r load the libraries}
 library(tidyverse)
 library(tsibble)
-urlfile="https://raw.githubusercontent.com/flynnecon/datavizf24/refs/heads/main/Lollipop%20Chart/nba_championships.csv"
+urlfile="https://raw.githubusercontent.com/flynnecon/datavizf24/refs/heads/main/Slope%20Chart/us_auto_share.csv"
 ```
 
 
 
 ```{r read the data}
-candy <- read_csv(url(urlfile))
+carshare <- read_csv(url(urlfile))
 ```
+In this case you will want to check right away the the command **View(carshare)** to see what the data look like. The categorical aspect to the identifier and the irregular spacing of the data make it important to guarantee the data imported correctly. 
 
